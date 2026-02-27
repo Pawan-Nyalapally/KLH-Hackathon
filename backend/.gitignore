@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.env
+
+# Data
+Dataset/
+cleaned_claims.csv
+sample_claims.csv
+insurance.csv
+
+# SQLite Mock Database (Do not upload to GitHub, it is 1.6MB and auto-generates)
+claims.db
+claims.db-journal
+
+# Logs & Temp files
+*.log
+backend.log
+hospital_*_audit_report.pdf
+temp_uploads/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store

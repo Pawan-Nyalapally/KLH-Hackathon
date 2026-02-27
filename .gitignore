@@ -1,0 +1,36 @@
+# ────────────────────────────────────────────────────────
+# Node / Frontend
+# ────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.npm-cache/
+frontend/*.log
+frontend/.env
+frontend/.env.local
+
+# ────────────────────────────────────────────────────────
+# Python / Backend
+# ────────────────────────────────────────────────────────
+backend/__pycache__/
+backend/venv/
+backend/.venv/
+backend/*.log
+backend/.env
+
+# Ignore SQLite database to prevent committing 10,000 mock rows (1.6 MB)
+# The database will be rebuilt automatically via data_pipeline.py on first run
+backend/claims.db
+
+# Ignore dynamically generated hospital PDF reports
+backend/hospital_*_audit_report.pdf
+
+# Ignore temporary uploads from the AI forensics testing engine
+backend/temp_uploads/
+
+# ────────────────────────────────────────────────────────
+# OS & IDE
+# ────────────────────────────────────────────────────────
+.DS_Store
+*.swp
+.idea/
+.vscode/

@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        background-color: #f8fafc;
+        color: #0f172a;
+        @apply font-sans antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #0f172a;
+    }
+
+    ::selection {
+        background-color: rgba(79, 70, 229, 0.15);
+        color: #0f172a;
+    }
+}
+
+@layer components {
+
+    /* Card — white with subtle border and soft shadow */
+    .glass-card {
+        @apply bg-white border border-brand-border rounded-2xl;
+        box-shadow: 0 1px 4px 0 rgba(15, 23, 42, 0.06), 0 4px 16px 0 rgba(15, 23, 42, 0.04);
+    }
+
+    /* Nav — white sticky bar */
+    .glass-nav {
+        @apply bg-white border-b border-brand-border sticky top-0 z-50;
+        box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06);
+    }
+
+    /* Primary button */
+    .btn-primary {
+        @apply bg-brand-indigo text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-brand-violet active:scale-95 transition-all duration-150 flex items-center gap-2 shadow-sm;
+    }
+
+    /* Text glow → replaced with subtle underline accent on light bg */
+    .text-glow {
+        text-decoration: underline;
+        text-decoration-color: rgba(79, 70, 229, 0.4);
+        text-underline-offset: 4px;
+    }
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+        top: -100%;
+    }
+
+    100% {
+        left: 100%;
+        top: 100%;
+    }
+}

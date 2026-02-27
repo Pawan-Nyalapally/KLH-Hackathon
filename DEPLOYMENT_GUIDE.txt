@@ -1,0 +1,94 @@
+=========================================================
+ AROGYA VIGILANT - HACKATHON EVALUATION DEPLOYMENT GUIDE
+=========================================================
+
+This deployment guide is written specifically for Hackathon Judges and Evaluators 
+to ensure a smooth, zero-headache, instant setup of the end-to-end system.
+
+PREREQUISITES
+-------------
+1. Python 3.9+ (with `pip` and `venv`)
+2. Node.js & npm (v16+)
+3. Google Gemini API Key (optional but recommended for LLM-assisted audit summaries)
+
+=========================================================
+ QUICK START (The "One-Click" Way)
+=========================================================
+
+If you are on a Mac or Linux system, we have provided a shell script that 
+handles the entire process (environment setup, dependency installation, database 
+initialization, and launching both servers concurrently).
+
+    1. Open your terminal and navigate to the root directory `KLH`.
+    2. Run: 
+          bash run_system.sh
+    
+    The script will:
+     - Boot the FastAPI backend on http://localhost:8000
+     - Initialize the SQLite database and seed 10,000 mock PM-JAY claims
+     - Start the Vite React frontend on http://localhost:5173 
+    
+    Press `Ctrl+C` at any time to gracefully shut both servers down.
+
+=========================================================
+ MANUAL START (Step-by-Step for Windows or Custom Setup)
+=========================================================
+
+If the script does not work for your environment, follow these manual steps.
+
+STEP 1: Start the Backend (FastAPI + SQLite + ML Engine)
+--------------------------------------------------------
+1. Navigate to the backend directory:
+   cd ./backend
+
+2. Set up the Python virtual environment:
+   python3 -m venv venv
+   source venv/bin/activate      # On Windows: .\venv\Scripts\activate
+
+3. Install the dependencies:
+   pip install -r requirements.txt
+
+4. (Optional) Set your Gemini API key for dynamic LLM Audit summaries:
+   export GEMINI_API_KEY="your-api-key-here"   # On Windows (cmd): set GEMINI_API_KEY="your-api-key-here"
+
+5. Run the FastAPI server:
+   python main.py
+   (or `uvicorn main:app --host 0.0.0.0 --port 8000`)
+
+   The backend is now live at http://localhost:8000
+   Note: On the first run, `claims.db` will be securely generated containing 10,000 rows.
+
+STEP 2: Start the Frontend (React + Tailwind + Framer Motion)
+-------------------------------------------------------------
+1. Open a *new* terminal window.
+2. Navigate to the frontend directory:
+   cd ./frontend
+
+3. Install dependencies:
+   npm install
+
+4. Start the development server:
+   npm run dev
+
+   The frontend is now live at http://localhost:5173
+
+=========================================================
+ HOW TO EVALUATE THE FEATURES
+=========================================================
+
+1. System Intelligence & Analytics:
+   Navigate to the Dashboard to see real-time SQLite data ingestion (10K rows).
+   All geographic and timeline analytics are dynamically computed via the pandas data pipeline.
+   
+2. Rule-Based & ML Anomalies:
+   The "Fraud Detectors" table ranks hospitals automatically. 
+   Notice how Ghost claims, Concurrent claims, and Up-coded claims are precisely tagged.
+
+3. AI Investigation Engine (Anti-Image Reuse):
+   Navigate to "AI Investigation".
+   - Upload ANY PDF or image file. The engine uses SHA-256 for exact byte duplicates and pHash via PyMuPDF for edited documents.
+   - Upload the exact *same* file a second time. Watch the risk score shoot to 95% (Critical Similarity / Document Reuse).
+
+4. LLM Audit Exporter:
+   On the Provider table, click "Download Audit Report". If the Gemini API key was provided, 
+   a custom LLM-generated summary will be structured in the PDF explaining the exact reasons that hospital was flagged.
